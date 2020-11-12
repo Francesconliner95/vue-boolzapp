@@ -44,7 +44,7 @@
                     <input type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
                 </div>
                 <div class="contacts">
-                    <div class="contact" v-for="(contact, indice) in contacts">
+                    <div class="contact" v-for="(contact, indice) in contacts" @click="set_contact(indice)">
                         <div class="friend-user">
                             <img :src="img[indice]" alt="">
                         </div>
@@ -86,10 +86,12 @@
                     </div>
                 </div>
                 <div class="messages">
-                    <div class="message">
-                        <!-- <div class="my-message text"> -->
-                        <div class="others-message text">
-                            <p>Ciao a tutti belli e brutti</p>
+                    <!-- in questo v-for ciclo l'oggetto messages-->
+                    <div class="message" v-for="(item, indice) in contacts[c_index].messages">
+                        <!--definisco la classe del messaggio, se inviato da me gli apllico la classe 'my-message', se inviato da un'altro utente gli apllico la classe 'others-message'-->
+                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text">
+                            <!--stampo solamente un messaggio alla volta-->
+                            <p>{{item.message}}</p>
                         </div>
                     </div>
                 </div>
@@ -100,12 +102,7 @@
                 </div>
 
             </div>
-            <!-- aggiungere v-on:keyup al imput ci permette di chimare una funzione alla pressione di un tasto sulla tastiera -->
-            <!-- <input v-on:keyup="enter" v-model="item" type="text" name="" value="">
-            <button @click="add_item" type="button" name="button">Invio</button>
-            <p v-for="(item, indice) in array_items" @click="remove_item(indice)">{{item}}</p> -->
         </div>
-
         <script src="main.js" charset="utf-8"></script>
     </body>
 </html>
