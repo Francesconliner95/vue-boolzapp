@@ -68,14 +68,15 @@
                 <div class="right-header">
                     <div class="right-header-user">
                         <div class="friend-user">
-                            <img src="img/utente_1.png" alt="">
+                            <img :src="img[c_index]" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
-                                Michele
+                                {{contacts[c_index].name}}
                             </p>
                             <p class="text-min">
-                                Ultimo accesso oggi alle 15:40
+                                Ultimo accesso oggi alle 
+                                {{contacts[c_index].messages[contacts[c_index].messages.length-1].date.substr(11, 5)}}
                             </p>
                         </div>
                     </div>
@@ -97,7 +98,8 @@
                 </div>
                 <div class="write">
                     <i class="far fa-smile"></i>
-                    <input type="text" name="" value="" placeholder="Scrivi un messaggio...">
+                    <!-- v-on:keyup="enter" -->
+                    <input @keyup.enter="send" v-model="w_text" type="text" name="" value="" placeholder="Scrivi un messaggio...">
                     <i class="fas fa-microphone"></i>
                 </div>
 

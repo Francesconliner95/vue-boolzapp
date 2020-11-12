@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#root',
     data: {
+        w_text: '',
         c_index: 0,
         img: [
             "img/utente_1.png",
@@ -97,6 +98,38 @@ var app = new Vue({
         set_contact(indice){
             console.log(indice);
             this.c_index = indice;
+        },
+        send(){
+            console.log('send');
+            console.log(this.w_text);
+            console.log(new Date());
+
+            function addZero(i) {
+              if (i < 10) {
+                i = "0" + i;
+              }
+              return i;
+            }
+
+            function myFunction() {
+              var d = new Date();
+              var y = d.getYear();
+              var h = addZero(d.getHours());
+              var m = addZero(d.getMinutes());
+              var s = addZero(d.getSeconds());
+              var time = y + " " + h + ":" + m + ":" + s;
+              console.log(time);
+              console.log('ciau');
+            }
+
+            this.contacts[this.c_index].messages.push({
+            date: '10/01/2020 15:50:00',
+            message: this.w_text,
+            status: 'sent'
+            })
+            /*settiamo la variabile w_text uguale a una stringa vuota per pulirla da messaggio appena inviato*/
+            this.w_text="";
+
         }
     },
 })
