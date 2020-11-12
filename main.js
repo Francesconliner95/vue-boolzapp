@@ -99,37 +99,53 @@ var app = new Vue({
             console.log(indice);
             this.c_index = indice;
         },
+
         send(){
-            console.log('send');
-            console.log(this.w_text);
-            console.log(new Date());
-
-            function addZero(i) {
-              if (i < 10) {
-                i = "0" + i;
-              }
-              return i;
-            }
-
-            function myFunction() {
-              var d = new Date();
-              var y = d.getYear();
-              var h = addZero(d.getHours());
-              var m = addZero(d.getMinutes());
-              var s = addZero(d.getSeconds());
-              var time = y + " " + h + ":" + m + ":" + s;
-              console.log(time);
-              console.log('ciau');
-            }
-
+            /*quando premo il tasto invio entro nella funzione send*/
+            /*dove vado a pushare nella directory del mio array il messaggio da me inviato*/
             this.contacts[this.c_index].messages.push({
-            date: '10/01/2020 15:50:00',
+            /*il messaggio pushato contiene la data di invio che otteniamo attraverso la funzione timeFunction()*/
+            date: this.timeFunction(),
+            /*il contenuto del messaggios sesso*/
             message: this.w_text,
+            /*e lo status sent (inquanto inviato da noi)*/
             status: 'sent'
             })
             /*settiamo la variabile w_text uguale a una stringa vuota per pulirla da messaggio appena inviato*/
             this.w_text="";
 
+            /*successivamente con la funzione setTimeout andiamo a pushare il messaggio di risposta all'utente generato automaticamente */
+            setTimeout(function(){
+                app.contacts[app.c_index].messages.push({
+                /*il messaggio pushato contiene la data di invio che otteniamo attraverso la funzione timeFunction()*/
+                date: app.timeFunction(),
+                /*il contenuto del messaggios sesso*/
+                message: 'ok',
+                /*e lo status 'received' (inquanto inviato dal PC)*/
+                status: 'received'
+                })
+            }, 3000);
+        },
+
+        addZero(i) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          return i;
+        },
+
+        timeFunction(){
+          var d = new Date();
+          var dy = d.getDate();
+          var mo = d.getMonth() + 1;
+          var y = d.getFullYear();
+          var h = this.addZero(d.getHours());
+          var m = this.addZero(d.getMinutes());
+          var s = this.addZero(d.getSeconds());
+          console.log(dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s);
+          return dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s;
         }
+
     },
+
 })
