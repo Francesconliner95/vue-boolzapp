@@ -44,20 +44,22 @@
                     <input type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
                 </div>
                 <div class="contacts">
-                    <div class="contact">
+                    <div class="contact" v-for="(contact, indice) in contacts">
                         <div class="friend-user">
-                            <img src="img/utente_1.png" alt="">
+                            <img :src="img[indice]" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
-                                Michele
+                                {{contact.name}}
                             </p>
                             <p class="text-min">
-                                Messaggio
+                                {{contact.messages[contact.messages.length-1].message}}
+                                <!-- accediamo all'ultimo messaggio inviato definendone la directory muovendoci tra array ed oggetti ("messages.length-1" lo usiamo per accedere all'ultimo messaggio) -->
                             </p>
                         </div>
                         <p class="data text-min">
-                            17:50
+                            {{contact.messages[contact.messages.length-1].date.substr(11, 5)}}
+                            <!-- dopo aver esegito laccesso alla variabile date, ne estraiamo la sottostringa definenendo come primo valore il punto di partenza e come secondo valore quanti caratteri in poi vogliamo estrarre -->
                         </p>
                     </div>
                 </div>
@@ -84,7 +86,12 @@
                     </div>
                 </div>
                 <div class="messages">
-
+                    <div class="message">
+                        <!-- <div class="my-message text"> -->
+                        <div class="others-message text">
+                            <p>Ciao a tutti belli e brutti</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="write">
                     <i class="far fa-smile"></i>
