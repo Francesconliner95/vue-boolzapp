@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="top-background">
+
+        </div>
+        <div class="bottom-background">
+
+        </div>
+
+        <div id="root">
+            <div class="left">
+                <div class="left-header">
+                    <div class="left-header-user">
+                        <img src="img/io.png" alt="">
+                    </div>
+                    <div class="left-header-icons">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <div class="notifications">
+                    <div class="not-icon">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <div class="not-info">
+                        <p class="text-max">
+                            Ricevi notifiche di nuovi messaggi
+                        </p>
+                        <a href="#" class="text-min">
+                            Attiva notifiche desktop
+                        </a>
+                    </div>
+                </div>
+                <div class="search">
+                    <input type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
+                </div>
+                <div class="contacts">
+                    <div class="contact">
+                        <div class="friend-user">
+                            <img src="img/utente_1.png" alt="">
+                        </div>
+                        <div class="friend-user-info">
+                            <p class="text-max">
+                                Michele
+                            </p>
+                            <p class="text-min">
+                                Messaggio
+                            </p>
+                        </div>
+                        <p class="data text-min">
+                            17:50
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="right-header">
+                    <div class="right-header-user">
+                        <div class="friend-user">
+                            <img src="img/utente_1.png" alt="">
+                        </div>
+                        <div class="friend-user-info">
+                            <p class="text-max">
+                                Michele
+                            </p>
+                            <p class="text-min">
+                                Ultimo accesso oggi alle 15:40
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-header-icons">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-paperclip"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <div class="messages">
+
+                </div>
+                <div class="write">
+                    <i class="far fa-smile"></i>
+                    <input type="text" name="" value="" placeholder="Scrivi un messaggio...">
+                    <i class="fas fa-microphone"></i>
+                </div>
+
+            </div>
+            <!-- aggiungere v-on:keyup al imput ci permette di chimare una funzione alla pressione di un tasto sulla tastiera -->
+            <!-- <input v-on:keyup="enter" v-model="item" type="text" name="" value="">
+            <button @click="add_item" type="button" name="button">Invio</button>
+            <p v-for="(item, indice) in array_items" @click="remove_item(indice)">{{item}}</p> -->
+        </div>
+
+        <script src="main.js" charset="utf-8"></script>
+    </body>
+</html>
