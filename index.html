@@ -8,13 +8,6 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     </head>
     <body>
-        <div class="top-background">
-
-        </div>
-        <div class="bottom-background">
-
-        </div>
-
         <div id="root">
             <div class="left">
                 <div class="left-header">
@@ -41,12 +34,32 @@
                     </div>
                 </div>
                 <div class="search">
-                    <input type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
+                    <input v-model="s_text" @keyup.enter="search_send" type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
                 </div>
-                <div class="contacts">
+                <div :class="display_none == true || s_text == '' ? '' : 'd-none'" class="contacts">
                     <div class="contact" v-for="(contact, indice) in contacts" @click="set_contact(indice)">
                         <div class="friend-user">
-                            <img :src="img[indice]" alt="">
+                            <img :src="'img/utente' + contact.avatar + '.png'" alt="">
+                        </div>
+                        <div class="friend-user-info">
+                            <p class="text-max">
+                                {{contact.name}}
+                            </p>
+                            <p class="text-min">
+                                {{contact.messages[contact.messages.length-1].message}}
+                                <!-- accediamo all'ultimo messaggio inviato definendone la directory muovendoci tra array ed oggetti ("messages.length-1" lo usiamo per accedere all'ultimo messaggio) -->
+                            </p>
+                        </div>
+                        <p class="data text-min">
+                            {{contact.messages[contact.messages.length-1].date.substr(11, 5)}}
+                            <!-- dopo aver esegito laccesso alla variabile date, ne estraiamo la sottostringa definenendo come primo valore il punto di partenza e come secondo valore quanti caratteri in poi vogliamo estrarre -->
+                        </p>
+                    </div>
+                </div>
+                <div :class="display_none == true || s_text == '' ? 'd-none' : ''" class="contacts">
+                    <div class="contact" v-for="(contact, indice) in array_filtered" @click="set_contact(indice)">
+                        <div class="friend-user">
+                            <img :src="'img/utente' + contact.avatar + '.png'" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
@@ -68,14 +81,14 @@
                 <div class="right-header">
                     <div class="right-header-user">
                         <div class="friend-user">
-                            <img :src="img[c_index]" alt="">
+                            <img :src="'img/utente' + contacts[c_index].avatar + '.png'" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
                                 {{contacts[c_index].name}}
                             </p>
                             <p class="text-min">
-                                Ultimo accesso oggi alle 
+                                Ultimo accesso oggi alle
                                 {{contacts[c_index].messages[contacts[c_index].messages.length-1].date.substr(11, 5)}}
                             </p>
                         </div>
@@ -90,9 +103,14 @@
                     <!-- in questo v-for ciclo l'oggetto messages-->
                     <div class="message" v-for="(item, indice) in contacts[c_index].messages">
                         <!--definisco la classe del messaggio, se inviato da me gli apllico la classe 'my-message', se inviato da un'altro utente gli apllico la classe 'others-message'-->
-                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text">
+                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style">
                             <!--stampo solamente un messaggio alla volta-->
-                            <p>{{item.message}}</p>
+                            <p>
+                                {{item.message}}
+                                <span class="text-min">
+                                    {{item.date.substr(11, 5)}}
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>

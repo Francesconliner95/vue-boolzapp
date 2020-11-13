@@ -2,13 +2,10 @@ var app = new Vue({
     el: '#root',
     data: {
         w_text: '',
+        s_text: "",
         c_index: 0,
-        img: [
-            "img/utente_1.png",
-            "img/utente_2.png",
-            "img/utente_3.png",
-            "img/utente_4.png",
-        ],
+        array_filtered:[],
+        display_none: true,
         contacts:   [
                         {
                         name: 'Michele',
@@ -144,8 +141,19 @@ var app = new Vue({
           var s = this.addZero(d.getSeconds());
           console.log(dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s);
           return dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s;
-        }
+        },
 
+        search_send(){
+            this.array_filtered = this.contacts.filter((elemento, index, array)=>{
+                console.log('ciao');
+                var name = this.contacts[index].name.toLowerCase();
+                var name_s = this.s_text.toLowerCase();
+                console.log(name.search(name_s));
+                return name.search(name_s) != -1;
+            });
+            console.log(this.array_filtered);
+            this.display_none= false;
+        }
     },
 
 })

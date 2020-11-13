@@ -7,17 +7,8 @@
 body{
     position: relative;
     font-family: Arial;
-}
-
-/**BACKGROUND**/
-.top-background{
-    height: 25vh;
-    background-color: #358675;
-}
-
-.bottom-background{
-    height: 75vh;
-    background-color: #d2d4c9;
+    height: 100vh;
+    background: linear-gradient(#358675 0% 25%, #d2d4c9 25% 100%);
 }
 
 #root{
@@ -146,10 +137,15 @@ i:hover{
     outline: none;
 }
 
+.d-none{
+    display: none;
+}
+
 .contacts{
     width: 100%;
     height: calc(100% - 140px);
     background-color: white;
+    overflow-y: scroll;
 }
 
 .contact{
@@ -219,9 +215,19 @@ i:hover{
 .messages{
     width: 100%;
     height: calc(100% - 100px);
-    /* background-color: blue; */
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-    /* background-repeat: repeat-x; */
+    overflow-y: scroll;
+}
+
+.messages::-webkit-scrollbar-track {
+  border: 1px solid white;
+  padding: 2px 0;
+  background-color: #eaeaea;
+  /* border-radius: 5px; */
+}
+
+.messages::-webkit-scrollbar {
+  width: 10px;
 }
 
 .message{
@@ -236,22 +242,29 @@ i:hover{
         clear: both;
 }
 
-.my-message{
+.message-style{
     max-width: 200px;
-    background-color: #d3f8bd;
-    padding: 10px;
+    min-width: 50px;
+    padding: 15px 10px;
+    position: relative;
     border-radius: 10px;
     display: inline-block;
+}
+
+.my-message{
+    background-color: #d3f8bd;
     float: right;
 }
 
 .others-message{
-    max-width: 200px;
     background-color: #fefffe;
-    padding: 10px;
-    border-radius: 10px;
-    display: inline-block;
     float: left;
+}
+
+.message span{
+    position: absolute;
+    bottom: 1px;
+    right: 4px;
 }
 
 .write{
