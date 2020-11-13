@@ -5,7 +5,7 @@ var app = new Vue({
         s_text: "",
         c_index: 0,
         array_filtered:[],
-        display_none: true,
+        search_none: true,
         contacts:   [
                         {
                         name: 'Michele',
@@ -143,16 +143,19 @@ var app = new Vue({
           return dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s;
         },
 
+        /*Quando premiamo il tasto invio nella ricerca viene chimata la funzione search_send  che ci genererà un array con al suo interno solo i caratteri digitati dall'utente*/
         search_send(){
             this.array_filtered = this.contacts.filter((elemento, index, array)=>{
-                console.log('ciao');
+                /*settiamo le due stringhe da confrontare entrambe in minuscolo*/
                 var name = this.contacts[index].name.toLowerCase();
                 var name_s = this.s_text.toLowerCase();
+                /*la funzione search ci restituirà un numero positivo che corrisponderà alla posizione in cui si trova il carattere digitato, negativo se inesistente*/
                 console.log(name.search(name_s));
                 return name.search(name_s) != -1;
             });
             console.log(this.array_filtered);
-            this.display_none= false;
+            /*al termine della ricerca settiamo la variabile search_none= false in quanto la ricerca è attiva (si disattiverà(true) in automatico quando non ci saranno più caratteria allinterno dell'input(<div :class="search_none == true || s_text == '' ? display_none=true : 'd-none'" class="contacts">))*/
+            this.search_none= false;
         }
     },
 
