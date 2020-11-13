@@ -106,7 +106,7 @@
                     <div class="message" v-for="(item, indice) in contacts[c_index].messages">
                         <!--definisco la classe del messaggio, se inviato da me gli apllico la classe 'my-message', se inviato da un'altro utente gli apllico la classe 'others-message'-->
                         <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style"
-                        >
+                        v-if="item.menu == true">
                             <!--stampo solamente un messaggio alla volta-->
                             <p>
                                 {{item.message}}
@@ -115,17 +115,30 @@
                                 </span>
                                 <i class="fas fa-angle-down"
                                 @click="toggleClass(indice)"></i>
-
-                                <div :class="isActive[indice] == true ? 'dy-none' : ''" class="message-menu">
-                                    <div class="message-info">
-                                        <p class="text">
-                                        Message info</p>
-                                    </div>
-                                    <div class="delate-message" @click="delate(indice)">
-                                        <p class="text">
-                                        Delate message</p>
-                                    </div>
+                            </p>
+                            <div class="message-menu" >
+                                <div class="message-info">
+                                    <p class="text">
+                                    Message info
+                                    </p>
                                 </div>
+                                <div class="delate-message" @click="delate(indice)">
+                                    <p class="text">
+                                    Delate message
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style"
+                        v-else>
+                            <!--stampo solamente un messaggio alla volta-->
+                            <p>
+                                {{item.message}}
+                                <span class="text-min">
+                                    {{item.date.substr(11, 5)}}
+                                </span>
+                                <i class="fas fa-angle-down"
+                                @click="toggleClass(indice)"></i>
                             </p>
                         </div>
                     </div>
