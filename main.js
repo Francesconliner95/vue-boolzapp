@@ -6,6 +6,7 @@ var app = new Vue({
         c_index: 0,
         array_filtered:[],
         search_none: true,
+        isActive: [true,true,true],
         contacts:   [
                         {
                         name: 'Michele',
@@ -156,7 +157,32 @@ var app = new Vue({
             console.log(this.array_filtered);
             /*al termine della ricerca settiamo la variabile search_none= false in quanto la ricerca è attiva (si disattiverà(true) in automatico quando non ci saranno più caratteria allinterno dell'input(<div :class="search_none == true || s_text == '' ? display_none=true : 'd-none'" class="contacts">))*/
             this.search_none= false;
+        },
+
+        toggleClass(index){
+            // if(this.isActive[indice]==undefined){
+            //     this.isActive[indice]=false;
+            // }
+            // else{
+                this.isActive[index] = !this.isActive[index];
+            // }
+
+            console.log(index);
+            console.log(this.isActive);
+        },
+
+        delate(indice){
+            console.log(this.c_index);
+            if(this.contacts[this.c_index].messages.lenght!=1){
+                this.contacts[this.c_index].messages.splice(indice, 1);
+                console.log('if');
+            }
+            else {
+                console.log('else');
+            }
+            console.log(this.contacts[this.c_index].messages);
         }
+
     },
 
 })

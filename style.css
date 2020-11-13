@@ -250,6 +250,18 @@ i:hover{
     border-radius: 10px;
     display: inline-block;
 }
+.message-style i{
+    display: none;
+    font-size: 20px;
+    color: gray;
+    position: absolute;
+    right: 4px;
+    top:2px;
+}
+
+.message-style:hover i{
+    display: inline-block;
+}
 
 .my-message{
     background-color: #d3f8bd;
@@ -265,6 +277,44 @@ i:hover{
     position: absolute;
     bottom: 1px;
     right: 4px;
+}
+
+.dy-none{
+    /* display: none; */
+}
+
+.message-info,
+.delate-message{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+.delate-message:hover{
+    cursor: pointer;
+}
+
+.message-menu{
+    width: 120px;
+    height: 80px;
+    background-color: white;
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.5);
+    position: absolute;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.my-message .message-menu{
+    z-index: 1;
+    right: 4px;
+}
+
+.others-message .message-menu{
+    z-index: 1;
+    right: -110px;
 }
 
 .write{
