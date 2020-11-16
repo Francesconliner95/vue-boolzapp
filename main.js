@@ -107,8 +107,14 @@ var app = new Vue({
     methods: {
 
         set_contact(indice){
-            console.log(indice);
-            this.c_index = indice;
+            // if(this.search_none){
+                console.log(indice);
+                this.c_index = indice;
+            // }
+            // else {
+            //
+            // }
+
             this.resetMenu();
         },
 
@@ -163,6 +169,7 @@ var app = new Vue({
 
         /*Quando viene chimata la funzione search_send verrà generato un array con al suo interno solo i caratteri digitati dall'utente*/
         search_send(){
+
             this.array_filtered = this.contacts.filter((elemento, index, array)=>{
                 /*settiamo le due stringhe da confrontare entrambe in minuscolo*/
                 var name = this.contacts[index].name.toLowerCase();

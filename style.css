@@ -133,6 +133,7 @@ i:hover{
     width: 100%;
     height: 40px;
     background-color: white;
+    position: relative;
 }
 
 .search>input{
@@ -148,6 +149,14 @@ i:hover{
 
 .search>input:focus{
     outline: none;
+}
+
+.search>i{
+    position: absolute;
+    color: rgba(165,165,177, .9);
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .d-none{
