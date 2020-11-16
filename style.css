@@ -11,6 +11,18 @@ body{
     background: linear-gradient(#358675 0% 25%, #d2d4c9 25% 100%);
 }
 
+::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+::-webkit-scrollbar-track {
+  background: #eaeaea;        /* color of the tracking area */
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(165,165,177, .5);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid #eaeaea;  /* creates padding around scroll thumb */
+}
+
 #root{
     width: 1000px;
     height: 600px;
@@ -222,17 +234,6 @@ i:hover{
     height: calc(100% - 100px);
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
     overflow-y: scroll;
-}
-
-.messages::-webkit-scrollbar-track {
-  border: 1px solid white;
-  padding: 2px 0;
-  background-color: #eaeaea;
-  /* border-radius: 5px; */
-}
-
-.messages::-webkit-scrollbar {
-  width: 10px;
 }
 
 .message{

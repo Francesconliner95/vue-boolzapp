@@ -6,7 +6,8 @@ var app = new Vue({
         c_index: 0,
         array_filtered:[],
         search_none: true,
-        show: [],
+        random_word: [  'Ciao','Io sto bene tu?',':)','Cosa mi dici di bello?', 'AHAHAHAHAH'],
+
         contacts:   [
                         {
                         name: 'Michele',
@@ -131,10 +132,13 @@ var app = new Vue({
                 /*il messaggio pushato contiene la data di invio che otteniamo attraverso la funzione timeFunction()*/
                 date: app.timeFunction(),
                 /*il contenuto del messaggios sesso*/
-                message: 'ok',
+                message: app.random_word[Math.floor(Math.random() * 5)],
                 /*e lo status 'received' (inquanto inviato dal PC)*/
-                status: 'received'
+                status: 'received',
+
                 })
+
+
             }, 3000);
         },
 
@@ -210,6 +214,6 @@ var app = new Vue({
 
     mounted: function(){
 
-    }
+    },
 
 })

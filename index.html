@@ -135,7 +135,7 @@
                     <i class="far fa-smile"></i>
                     <!-- v-on:keyup="enter" -->
                     <input @keyup.enter="send" v-model="w_text" type="text" name="" value="" placeholder="Scrivi un messaggio...">
-                    <i :class="w_text != '' ? 'fas fa-arrow-alt-circle-right' : 'fas fa-microphone'"></i>
+                    <i :class="w_text != '' ? 'fas fa-arrow-alt-circle-right' : 'fas fa-microphone'" @click="w_text != '' ? send() : ''"></i>
                 </div>
 
             </div>
