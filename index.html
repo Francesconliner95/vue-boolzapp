@@ -69,7 +69,7 @@
                             <p class="text-max">
                                 {{contact.name}}
                             </p>
-                            <p class="text-min" >
+                            <p class="text-min" v-if="contact.messages.length!=0" >
                                 {{contact.messages[contact.messages.length-1].message}}
                                 <!-- accediamo all'ultimo messaggio inviato definendone la directory muovendoci tra array ed oggetti ("messages.length-1" lo usiamo per accedere all'ultimo messaggio) -->
                             </p>
