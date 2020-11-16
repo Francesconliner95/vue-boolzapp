@@ -104,9 +104,11 @@ var app = new Vue({
                     ]
         },
     methods: {
+
         set_contact(indice){
             console.log(indice);
             this.c_index = indice;
+            this.resetMenu();
         },
 
         send(){
@@ -155,7 +157,7 @@ var app = new Vue({
           return dy + "/" + mo + "/" + y + " " + h + ":" + m + ":" + s;
         },
 
-        /*Quando premiamo il tasto invio nella ricerca viene chimata la funzione search_send  che ci genererà un array con al suo interno solo i caratteri digitati dall'utente*/
+        /*Quando viene chimata la funzione search_send verrà generato un array con al suo interno solo i caratteri digitati dall'utente*/
         search_send(){
             this.array_filtered = this.contacts.filter((elemento, index, array)=>{
                 /*settiamo le due stringhe da confrontare entrambe in minuscolo*/
@@ -170,8 +172,22 @@ var app = new Vue({
             this.search_none= false;
         },
 
+        resetMenu(){
+            for (var l = 0; l < this.contacts.length; l++) {
+                for (var m = 0; m < this.contacts[l].messages.length; m++) {
+                    this.contacts[l].messages[m].menu=false;
+                }
+            }
+        },
+
         toggleClass(index){
-            this.contacts[this.c_index].messages[index].menu = !this.contacts[this.c_index].messages[index].menu;
+            if(this.contacts[this.c_index].messages[index].menu==true){
+                this.resetMenu();
+            }
+            else {
+                this.resetMenu();
+                this.contacts[this.c_index].messages[index].menu = true;
+            }
         },
 
         delate(indice){
@@ -187,14 +203,13 @@ var app = new Vue({
         }
 
     },
+
     created: function(){
-        for (var l = 0; l < this.contacts.length; l++) {
-            for (var m = 0; m < this.contacts[l].messages.length; m++) {
-                // this.contacts[l].messages[m].menu=false;
-                // console.log(this.contacts[l].messages[m].menu);
-                // console.log(this.contacts[l].messages[m]);
-            }
-        }
+
+    },
+
+    mounted: function(){
+
     }
 
 })

@@ -34,7 +34,8 @@
                     </div>
                 </div>
                 <div class="search">
-                    <input v-model="s_text" @keyup.enter="search_send" type="text" name="" value="" placeholder="&#xf002; Cerca o inizia una nuova chat">
+                    <!-- Quando l'input subisce qualsiasi cambiamento chiama la funzione per la ricerca (v-on:input="search_send") -->
+                    <input v-model="s_text" v-on:input="search_send" type="text" name="" value="" placeholder="&#xf002; Cerca o inizia una nuova chat">
                 </div>
                 <!-- se la variabile search_none è vera  e non c'è testo nell'imput allora mostriamo tutti i contatti-->
                 <div :class="search_none == true || s_text == '' ? search_none=true : 'd-none'" class="contacts">
@@ -134,7 +135,7 @@
                     <i class="far fa-smile"></i>
                     <!-- v-on:keyup="enter" -->
                     <input @keyup.enter="send" v-model="w_text" type="text" name="" value="" placeholder="Scrivi un messaggio...">
-                    <i class="fas fa-microphone"></i>
+                    <i :class="w_text != '' ? 'fas fa-arrow-alt-circle-right' : 'fas fa-microphone'"></i>
                 </div>
 
             </div>

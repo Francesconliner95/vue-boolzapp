@@ -332,6 +332,7 @@ i:hover{
 }
 .write>i{
     margin: 0 25px;
+    color: #b1b1b1;
 }
 
 .write>input{
