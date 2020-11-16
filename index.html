@@ -34,11 +34,11 @@
                     </div>
                 </div>
                 <div class="search">
-                    <input v-model="s_text" @keyup.enter="search_send" type="text" name="" value="" placeholder="&#xF002; Cerca o inizia una nuova chat">
+                    <input v-model="s_text" @keyup.enter="search_send" type="text" name="" value="" placeholder="&#xf002; Cerca o inizia una nuova chat">
                 </div>
                 <!-- se la variabile search_none è vera  e non c'è testo nell'imput allora mostriamo tutti i contatti-->
                 <div :class="search_none == true || s_text == '' ? search_none=true : 'd-none'" class="contacts">
-                    <div class="contact" v-for="(contact, indice) in contacts" @click="set_contact(indice)">
+                    <div class="contact" :class="c_index==indice ? 'active' : ''" v-for="(contact, indice) in contacts" @click="set_contact(indice)">
                         <div class="friend-user">
                             <img :src="'img/utente' + contact.avatar + '.png'" alt="">
                         </div>
@@ -105,8 +105,7 @@
                     <!-- in questo v-for ciclo l'oggetto messages-->
                     <div class="message" v-for="(item, indice) in contacts[c_index].messages">
                         <!--definisco la classe del messaggio, se inviato da me gli apllico la classe 'my-message', se inviato da un'altro utente gli apllico la classe 'others-message'-->
-                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style"
-                        v-if="item.menu == true">
+                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style">
                             <!--stampo solamente un messaggio alla volta-->
                             <p>
                                 {{item.message}}
@@ -116,7 +115,7 @@
                                 <i class="fas fa-angle-down"
                                 @click="toggleClass(indice)"></i>
                             </p>
-                            <div class="message-menu" >
+                            <div class="message-menu" v-if="item.menu == true" >
                                 <div class="message-info">
                                     <p class="text">
                                     Message info
@@ -128,18 +127,6 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                        <div :class="item.status == 'sent' ? 'my-message' : 'others-message'" class="text message-style"
-                        v-else>
-                            <!--stampo solamente un messaggio alla volta-->
-                            <p>
-                                {{item.message}}
-                                <span class="text-min">
-                                    {{item.date.substr(11, 5)}}
-                                </span>
-                                <i class="fas fa-angle-down"
-                                @click="toggleClass(indice)"></i>
-                            </p>
                         </div>
                     </div>
                 </div>

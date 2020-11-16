@@ -86,7 +86,6 @@ var app = new Vue({
                         name: 'Luisa',
                         avatar: '_4',
                         visible: true,
-                        menu: false,
                         messages: [
                                     {
                                     date: '10/01/2020 15:30:55',
@@ -178,10 +177,24 @@ var app = new Vue({
         delate(indice){
             console.log(this.c_index);
 
-            this.contacts[this.c_index].messages.splice(indice, 1);
-
+            // this.contacts[this.c_index].messages.splice(indice, 1);
+            // if(this.contacts[this.c_index].messages.length!=1){
+                Vue.delete(this.contacts[this.c_index].messages, indice);
+            // }
+            // else{
+            //     console.log('attenzione');
+            // }
         }
 
     },
+    created: function(){
+        for (var l = 0; l < this.contacts.length; l++) {
+            for (var m = 0; m < this.contacts[l].messages.length; m++) {
+                // this.contacts[l].messages[m].menu=false;
+                // console.log(this.contacts[l].messages[m].menu);
+                // console.log(this.contacts[l].messages[m]);
+            }
+        }
+    }
 
 })
