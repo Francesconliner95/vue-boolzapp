@@ -107,15 +107,11 @@ var app = new Vue({
     methods: {
 
         set_contact(indice){
-            // if(this.search_none){
-                console.log(indice);
-                this.c_index = indice;
-            // }
-            // else {
-            //
-            // }
 
+            console.log(indice);
+            this.c_index = indice;
             this.resetMenu();
+            this.autoScroll();
         },
 
         send(){
@@ -131,7 +127,10 @@ var app = new Vue({
             })
             /*settiamo la variabile w_text uguale a una stringa vuota per pulirla da messaggio appena inviato*/
             this.w_text="";
-
+            // window.scrollTo(0,document.querySelector(".messages").scrollHeight);
+            // window.scrollBy(0, 50);
+            // document.querySelector(".messages").scrollDown;
+            this.autoScroll();
             /*successivamente con la funzione setTimeout andiamo a pushare il messaggio di risposta all'utente generato automaticamente */
             setTimeout(function(){
                 app.contacts[app.c_index].messages.push({
@@ -144,7 +143,7 @@ var app = new Vue({
 
                 })
 
-
+            app.autoScroll();
             }, 3000);
         },
 
@@ -211,7 +210,13 @@ var app = new Vue({
             // else{
             //     console.log('attenzione');
             // }
-        }
+        },
+
+        autoScroll(){
+            setTimeout(function(){
+                document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+            }, 1000);
+        },
 
     },
 
@@ -220,7 +225,7 @@ var app = new Vue({
     },
 
     mounted: function(){
-
+        this.autoScroll();
     },
 
 })
