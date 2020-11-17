@@ -11,8 +11,7 @@ var app = new Vue({
         contacts:   [
                         {
                         name: 'Michele',
-                        avatar: '_1',
-                        visible: true,
+                        avatar: '1',
                         messages: [
                                     {
                                     date: '10/01/2020 15:30:55',
@@ -36,8 +35,7 @@ var app = new Vue({
                         },
                         {
                         name: 'Fabio',
-                        avatar: '_2',
-                        visible: true,
+                        avatar: '2',
                         messages: [
                                     {
                                     date: '20/03/2020 16:30:00',
@@ -61,8 +59,7 @@ var app = new Vue({
                         },
                         {
                         name: 'Batman',
-                        avatar: '_3',
-                        visible: true,
+                        avatar: '3',
                         messages: [
                                     {date: '28/03/2020 10:10:40',
                                     message: 'Sono l\'eroe che Gotham merita, ma non quello di cui ha bisogno adesso',
@@ -85,8 +82,7 @@ var app = new Vue({
                         },
                         {
                         name: 'Luisa',
-                        avatar: '_4',
-                        visible: true,
+                        avatar: '4',
                         messages: [
                                     {
                                     date: '10/01/2020 15:30:55',
@@ -106,10 +102,17 @@ var app = new Vue({
         },
     methods: {
 
-        set_contact(indice){
+        set_contact(n_avatar,indice){
+            /*ci passiamo come parametro il numero dell'avatar e lo utilizziamo per settare il c_index*/
 
-            console.log(indice);
-            this.c_index = indice;
+                // devo prendere la posizione del contatto nel mio array utilizzando n_avatar
+                /*ciclo ogni elelemento del mio array contacts, se trova corrispondenza con il vallore del mio avatar mi restituisce attraverso indexOf la sua posizione all'interno del array e la memorizza nella variabile pos*/
+                var pos = this.contacts.map(function(e) {
+                return e.avatar;
+                }).indexOf(n_avatar);
+
+                this.c_index=pos;
+
             this.resetMenu();
             this.autoScroll();
         },
@@ -127,10 +130,12 @@ var app = new Vue({
             })
             /*settiamo la variabile w_text uguale a una stringa vuota per pulirla da messaggio appena inviato*/
             this.w_text="";
-            // window.scrollTo(0,document.querySelector(".messages").scrollHeight);
-            // window.scrollBy(0, 50);
-            // document.querySelector(".messages").scrollDown;
+
             this.autoScroll();
+
+            /*quando inviamo un messaggio cambierà anche la posizione del nostro contatto all'interno dell'array, in quanto dobbiamo visualizzare al primo posto l'ultimo contatto con cui abbiamo chattato*/
+            this.refresh_contacts_list();
+
             /*successivamente con la funzione setTimeout andiamo a pushare il messaggio di risposta all'utente generato automaticamente */
             setTimeout(function(){
                 app.contacts[app.c_index].messages.push({
@@ -215,7 +220,18 @@ var app = new Vue({
         autoScroll(){
             setTimeout(function(){
                 document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-            }, 1000);
+            }, 100);
+        },
+
+        refresh_contacts_list(){
+            /*memorizziamo il contatto in una variabile d'appoggio*/
+            var change_position = this.contacts[this.c_index];
+            /*lo rimuoviamo dall'array*/
+            this.contacts.splice(this.c_index, 1)
+            /*e lo pushamo all'inizio dell'array nella pos 0*/
+            this.contacts.unshift(change_position);
+            /*dopo di che andiamo a specificare che il contatto con cui stiamo parlando non si trova piu nella sua vecchia posizione ma in quella 0 */
+            this.c_index=0;
         },
 
     },

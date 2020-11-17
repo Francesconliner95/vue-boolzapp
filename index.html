@@ -40,9 +40,9 @@
                 </div>
                 <!-- se la variabile search_none è vera  e non c'è testo nell'imput allora mostriamo tutti i contatti-->
                 <div :class="search_none == true || s_text == '' ? search_none=true : 'd-none'" class="contacts">
-                    <div class="contact" :class="c_index==indice ? 'active' : ''" v-for="(contact, indice) in contacts" @click="set_contact(indice)">
+                    <div class="contact" :class="c_index==indice ? 'active' : ''" v-for="(contact, indice) in contacts" @click="set_contact(contact.avatar,indice)">
                         <div class="friend-user">
-                            <img :src="'img/utente' + contact.avatar + '.png'" alt="">
+                            <img :src="'img/utente_' + contact.avatar + '.png'" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
@@ -61,9 +61,9 @@
                 </div>
                 <!-- se la variabile search_none è vera  e non c'è testo nell'imput allora mostriamo solo i contatti dell'array filtered -->
                 <div :class="search_none == true || s_text == '' ? 'd-none' : ''" class="contacts">
-                    <div class="contact" v-for="(contact, indice) in array_filtered" @click="set_contact(indice)">
+                    <div class="contact" v-for="(contact, indice) in array_filtered" @click="set_contact(contact.avatar,indice)">
                         <div class="friend-user">
-                            <img :src="'img/utente' + contact.avatar + '.png'" alt="">
+                            <img :src="'img/utente_' + contact.avatar + '.png'" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
@@ -85,7 +85,7 @@
                 <div class="right-header">
                     <div class="right-header-user">
                         <div class="friend-user">
-                            <img :src="'img/utente' + contacts[c_index].avatar + '.png'" alt="">
+                            <img :src="'img/utente_' + contacts[c_index].avatar + '.png'" alt="">
                         </div>
                         <div class="friend-user-info">
                             <p class="text-max">
